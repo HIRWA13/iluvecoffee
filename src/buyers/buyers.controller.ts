@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   HttpStatus,
@@ -30,5 +31,10 @@ export class BuyersController {
   @Patch(':id')
   update(@Param('id') id: string, @Body() body) {
     return `this action updates the buyer with id ${id}`;
+  }
+  // deleting: delete
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return `this action removes the buyer with id ${id}`;
   }
 }
