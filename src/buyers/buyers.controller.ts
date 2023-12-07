@@ -9,32 +9,34 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
+import { BuyersService } from './buyers.service';
 
 @Controller('buyers')
 export class BuyersController {
+  constructor(private readonly coffeBuyers: BuyersService) {}
   @Get()
   findBuyers() {
-    return 'this returns buyers';
+    return this.coffeBuyers.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return `this returns information of the buyer with id: ${id}`;
+    return this.coffeBuyers.findOne(id);
   }
 
   @Post()
   @HttpCode(HttpStatus.GONE)
   createBuyer(@Body() buyer) {
-    return buyer;
+    return this.coffeBuyers.create(buyer);
   }
   // updating: put and patch
   @Patch(':id')
   update(@Param('id') id: string, @Body() body) {
-    return `this action updates the buyer with id ${id}`;
+    return this.coffeBuyers.update(id, body);
   }
   // deleting: delete
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return `this action removes the buyer with id ${id}`;
+    return this.coffeBuyers.remove(id);
   }
 }
