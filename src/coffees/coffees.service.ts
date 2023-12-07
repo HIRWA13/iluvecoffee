@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Coffee } from './entities/coffee.entity';
 
 @Injectable()
@@ -25,10 +25,20 @@ export class CoffeesService {
   ]; // let's use this array of coffes as our data base for now
 
   findAll() {
+    if (this.coffees.length === 0) {
+      throw new HttpException(`Ooops no coffees found`, HttpStatus.NOT_FOUND);
+    }
     return this.coffees;
   }
   findOne(id: string) {
-    return this.coffees.find((item) => item.id === +id);
+    const coffee = this.coffees.find((item) => item.id === +id);
+    if (!coffee) {
+      throw new HttpException(
+        `no coffee found at id ${id}`,
+        HttpStatus.NOT_FOUND,
+      );
+    }
+    return coffee;
   }
   create(createCoffeeDto: any) {
     this.coffees.push(createCoffeeDto);
