@@ -5,6 +5,7 @@ import {
   HttpCode,
   HttpStatus,
   Param,
+  Patch,
   Post,
 } from '@nestjs/common';
 
@@ -24,5 +25,10 @@ export class BuyersController {
   @HttpCode(HttpStatus.GONE)
   createBuyer(@Body() buyer) {
     return buyer;
+  }
+  // updating: put and patch
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() body) {
+    return `this action updates the buyer with id ${id}`;
   }
 }
