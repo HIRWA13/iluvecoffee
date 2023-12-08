@@ -1,4 +1,7 @@
 import { Module } from '@nestjs/common';
+import { MenuController } from './menu.controller';
 
-@Module({})
+@Module({
+  controllers: [MenuController]
+})
 export class MenuModule {}
