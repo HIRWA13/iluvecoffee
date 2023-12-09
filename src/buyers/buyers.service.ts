@@ -46,7 +46,7 @@ export class BuyersService {
   update(id: string, updateBuyerDto: any) {
     const existingBuyer = this.findOne(id);
     if (existingBuyer) {
-      return `the buyer with the same id exists`;
+      return `the buyer with the same id exists ${updateBuyerDto}`;
     }
   }
 
