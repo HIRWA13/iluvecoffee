@@ -7,7 +7,17 @@
 
 ## Nest JS Playground
 
-This is a playground for Nest JS. It is a simple API of a coffee store.
+This is my playground for Nest JS. It is a simple API of a coffee store.
+you can create, update, delete and get all coffees or a specific coffee.
+
+with the help of a docker container you can access the postgres database with the following command:
+
+```bash
+docker-compose up -d  ## -d helps docker to run in the background
+```
+
+Docker is an open platform for developing, shipping, and running applications. It helps you to run your application in a containarized mode.
+
 
   <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
     <p align="center">
@@ -62,16 +72,45 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
+## Project Preview
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+to preview the project and the functionality, you can use Postman or Insomnia to test the API.
+the application runs on localhost:3000 by default.
+
+```bash
+## to create a new coffee
+POST localhost:3000/coffees
+{
+    "name": "coffee name",
+    "brand": "coffee brand",
+    "flavors": ["coffee flavor"]
+}
+
+## to get all coffees
+
+GET localhost:3000/coffees
+
+
+## to get a specific coffee
+
+GET localhost:3000/coffees/:id
+
+## to update a specific coffee
+
+PATCH localhost:3000/coffees/:id
+{
+    "name": "coffee name",
+    "brand": "coffee brand",
+    "flavors": ["coffee flavor"]
+}
+
+## to delete a specific coffee
+
+DELETE localhost:3000/coffees/:id
+```
+
+
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+- Author - [Junior Hirwa](https://github.com/HIRWA13)
