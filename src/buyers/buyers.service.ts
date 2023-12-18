@@ -39,14 +39,14 @@ export class BuyersService {
     return this.buyers.filter((item) => item.id === +id);
   }
 
-  create(createBuyerDto: any) {
-    return this.buyers.push(createBuyerDto);
+  create(buyer: any) {
+    return this.buyers.push(buyer);
   }
 
-  update(id: string, updateBuyerDto: any) {
+  update(id: string, newBuyer: any) {
     const existingBuyer = this.findOne(id);
     if (existingBuyer) {
-      return `the buyer with the same id exists ${updateBuyerDto}`;
+      return `the buyer with the same id exists ${newBuyer}`;
     }
   }
 
