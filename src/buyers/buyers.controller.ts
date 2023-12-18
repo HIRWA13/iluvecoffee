@@ -10,6 +10,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { BuyersService } from './buyers.service';
+import { CreateBuyerDto } from './dto/create-buyers.dto';
 
 @Controller('buyers')
 export class BuyersController {
@@ -26,15 +27,15 @@ export class BuyersController {
 
   @Post()
   @HttpCode(HttpStatus.GONE)
-  createBuyer(@Body() buyer) {
+  createBuyer(@Body() buyer: CreateBuyerDto) {
     return this.coffeBuyers.create(buyer);
   }
-  // updating: put and patch
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() body) {
     return this.coffeBuyers.update(id, body);
   }
-  // deleting: delete
+
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.coffeBuyers.remove(id);
