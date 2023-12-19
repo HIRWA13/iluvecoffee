@@ -1,23 +1,30 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
+  ForbiddenException,
   Get,
   HttpCode,
+  // HttpException,
   HttpStatus,
   Param,
   Patch,
   Post,
+  UseFilters,
 } from '@nestjs/common';
 import { BuyersService } from './buyers.service';
 import { CreateBuyerDto } from './dto/create-buyers.dto';
+import { ExceptionForMe } from './exceptions/forbiden.exceptions';
+import { HttpExceptionFilter } from './exceptions/filters/http-exception.filter';
 
 @Controller('buyers')
 export class BuyersController {
   constructor(private readonly coffeBuyers: BuyersService) {}
   @Get()
   findBuyers() {
-    return this.coffeBuyers.findAll();
+    // return this.coffeBuyers.findAll();
+    throw new ExceptionForMe();
   }
 
   @Get(':id')
@@ -26,9 +33,10 @@ export class BuyersController {
   }
 
   @Post()
-  @HttpCode(HttpStatus.GONE)
+  @UseFilters(HttpExceptionFilter)
   createBuyer(@Body() buyer: CreateBuyerDto) {
-    return this.coffeBuyers.create(buyer);
+    // return this.coffeBuyers.create(buyer);
+    throw new BadRequestException();
   }
 
   @Patch(':id')
