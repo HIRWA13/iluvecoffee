@@ -40,7 +40,8 @@ export class BuyersService {
   }
 
   create(buyer: any) {
-    return this.buyers.push(buyer);
+    this.buyers.push(buyer);
+    return this.buyers;
   }
 
   update(id: string, newBuyer: any) {
