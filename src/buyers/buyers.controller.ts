@@ -1,13 +1,9 @@
 import {
-  BadRequestException,
   Body,
   Controller,
   Delete,
-  ForbiddenException,
   Get,
-  HttpCode,
   // HttpException,
-  HttpStatus,
   Param,
   Patch,
   Post,
@@ -35,8 +31,7 @@ export class BuyersController {
   @Post()
   @UseFilters(HttpExceptionFilter)
   createBuyer(@Body() buyer: CreateBuyerDto) {
-    // return this.coffeBuyers.create(buyer);
-    throw new BadRequestException();
+    return this.coffeBuyers.create(buyer);
   }
 
   @Patch(':id')
